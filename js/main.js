@@ -6,16 +6,18 @@ let queries = {}
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     queries = {
-        query_year: document.querySelector(`#year`).value,
-        query_round: document.querySelector(`#round`).value
+        query_year: document.querySelector('#year').value,
+        query_round: document.querySelector('#round').value
     }
     console.log(queries.query_year)
     console.log(queries.query_round)
 })
 
-// Data for Table
+// Data for Tableß
 const getData = async () => {
-    const url = `http://ergast.com/api/f1/2020/1/driverstandings.json`
+    let season = document.querySelector('#year').value;
+    let round = document.querySelector('#round').value;
+    const url = `http://ergast.com/api/f1/${season}/${round}/driverstandings.json`
     let response = await axios.get(url)
     console.log(response)
     return response.data
