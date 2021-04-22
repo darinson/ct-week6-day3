@@ -15,7 +15,7 @@ form.addEventListener('submit', (event) => {
 
 // Data for Table
 const getData = async () => {
-    const url = `http://ergast.com/api/f1/${queries.query_year}/${queries.query_round}/driverstandings.json`
+    const url = `http://ergast.com/api/f1/2020/1/driverstandings.json`
     let response = await axios.get(url)
     console.log(response)
     return response.data
