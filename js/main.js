@@ -1,18 +1,24 @@
 // Taking in Form Data
+
 const form = document.querySelector(`#ask-user-form`)
-
-let queries = {}
-
 form.addEventListener('submit', (event) => {
     event.preventDefault();
-    queries = {
-        query_year: document.querySelector('#year').value,
-        query_round: document.querySelector('#round').value
-    }
 })
 
 // Data for Table
 const getData = async () => {
+    /* this doesn't work.
+    let queries = {}
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        queries = {
+            'query_year': document.querySelector('#year').value,
+            'query_round': document.querySelector('#round').value
+        }
+    })
+    console.log(queries)
+    const url = `http://ergast.com/api/f1/${queries.query_year}/${queries.query_round}/driverstandings.json`
+    */
     let season = document.querySelector('#year').value;
     let round = document.querySelector('#round').value;
     const url = `http://ergast.com/api/f1/${season}/${round}/driverstandings.json`
@@ -27,7 +33,6 @@ const createRow = (position, firstname, lastname, nationality, sponsor, points, 
 
 const loadData = async () => {
     const standings = await getData();
-    console.log(standings)
     document.querySelector(`.show-standings`).innerHTML = ''
     if (standings.MRData.StandingsTable.StandingsLists.length == 0) {
         document.querySelector(`.show-standings`).insertAdjacentHTML(`beforeend`, '<p>Nothing to show here!</p>')
